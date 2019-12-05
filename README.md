@@ -1,0 +1,2 @@
+# FileKingOS
+操作系统课设，Python实现的小型文件系统简称FKOS不是FuckOS
