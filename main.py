@@ -60,7 +60,7 @@ def main():
                 continue
 
             if cmd == 'cd':
-                here = cd(arg, here)
+                here = cd(arg, here, user)
             elif cmd == 'useradd':
                 password = input("Please input password:")
                 checkPas = input("Please repeat your password:")
@@ -70,20 +70,20 @@ def main():
                     print("Incorrect password!")
             elif cmd == 'chroot':
                 password = input("Please input password:")
-                temp =  chroot(arg, password)
+                temp = chroot(arg, password)
                 if temp:
-                    user = temp # 更改当前用户
+                    user = temp  # 更改当前用户
                     here = user.home
                     os.system(clearSin)
                     print("Welcome to kush, the shell made by Kainhuck")
             elif cmd == 'cp':
                 try:
-                    cp(arg, cmd_list[2], here)
+                    cp(arg, cmd_list[2], here, user)
                 except:
                     print("Incorrect input format!")
             elif cmd == 'mv':
                 try:
-                    mv(arg, cmd_list[2], here)
+                    mv(arg, cmd_list[2], here, user)
                 except:
                     print("Incorrect input format!")
             else:
@@ -91,7 +91,8 @@ def main():
                 if parse:
                     parse(arg, here)
                 else:
-                    print("The unknown command => \033[31m{}\033[0m".format(cmd))
+                    print(
+                        "The unknown command => \033[31m{}\033[0m".format(cmd))
                     continue
 
 

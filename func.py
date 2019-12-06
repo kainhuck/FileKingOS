@@ -112,7 +112,7 @@ def mkdir(filename, folder):
     # return folder
 
 
-def cd(filename, folder):
+def cd(filename, folder, user):
     '''
     切换路径
     '''
@@ -120,6 +120,9 @@ def cd(filename, folder):
 
     folderList = filename.split("/")
     start = folderList[0]  # 开始位置 '' : 根目录; '.' : 当前目录; '..' : 上级目录
+    if len(folderList) == 2 and start == '' and folderList[1] != user.username:
+        print("不能进入别人的目录")
+        return folder
     if start == '':  # 根目录
         folder = root
         if filename != '/':
@@ -222,7 +225,7 @@ parseCmd = {
 # 这里的函数操作需要两个参数：
 
 
-def cp(filename, pwd, folder):
+def cp(filename, pwd, folder,user):
     '''
     复制文件
     '''
@@ -261,7 +264,7 @@ def cp(filename, pwd, folder):
     if not len(pwd):    # 此时说明在根目录下
         print("不能将文件复制到根目录下")
         return
-    folder = cd(pwd, folder)
+    folder = cd(pwd, folder, user)
     # 再复制文件
     # 判断重名
     for each in folder.fileList:
@@ -283,7 +286,7 @@ def cp(filename, pwd, folder):
     return
 
 
-def mv(filename, pwd, folder):
+def mv(filename, pwd, folder,user):
     '''
     移动文件
     '''
@@ -325,7 +328,7 @@ def mv(filename, pwd, folder):
     if not len(pwd):    # 此时说明在根目录下
         print("不能将文件复制到根目录下")
         return folder
-    folder = cd(pwd, folder)
+    folder = cd(pwd, folder, user)
     # 再复制文件
     # 判断重名
     for each in folder.fileList:

@@ -13,4 +13,3 @@ root.folderList.append(rootUser.home)
 userGroup = {
     rootUser.username: rootUser
 }
-
