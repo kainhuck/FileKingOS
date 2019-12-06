@@ -3,7 +3,7 @@
 '''
 
 from view import *
-from func import parseCmd, cd, checkPass, usage, useradd, chroot, cp, mv
+from func import parseCmd, cd, checkPass, usage, useradd, chroot, cp, mv, neofetch
 from config import userGroup
 import os
 import time
@@ -43,6 +43,9 @@ def main():
         elif cmd == 'exit':
             print("bye~")
             break
+        elif cmd == 'neofetch':
+            neofetch()
+            continue
         elif cmd == 'ls':
             here.show()
         elif cmd == 'clear':

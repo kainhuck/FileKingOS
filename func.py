@@ -225,7 +225,7 @@ parseCmd = {
 # 这里的函数操作需要两个参数：
 
 
-def cp(filename, pwd, folder,user):
+def cp(filename, pwd, folder, user):
     '''
     复制文件
     '''
@@ -286,25 +286,25 @@ def cp(filename, pwd, folder,user):
     return
 
 
-def mv(filename, pwd, folder,user):
+def mv(filename, pwd, folder, user):
     '''
     移动文件
     '''
     if pwd == '/':
         print("不能将文件复制到根目录")
-        return 
+        return
     oldFolder = folder  # 保存断点
     folderList = pwd.split("/")
     newname = folderList.pop(-1)    # 最后一个默认是新文件名
     if not len(newname):
         print("目标文件名不能为空")
-        return 
+        return
     if not len(folderList):  # 当前文件夹下
         # 判断重名
         for each in folder.fileList:
             if each.name == newname:
                 print("文件重名")
-                return 
+                return
 
         # 找到要复制的文件
         for each in oldFolder.fileList:
@@ -320,7 +320,7 @@ def mv(filename, pwd, folder,user):
         else:
             print("文件不存在")
 
-        return 
+        return
 
     # 其他情况，
     # 先切换到目标目录
@@ -334,7 +334,7 @@ def mv(filename, pwd, folder,user):
     for each in folder.fileList:
         if each.name == newname:
             print("文件重名")
-            return 
+            return
 
     # 找到要复制的文件
     for each in oldFolder.fileList:
@@ -349,7 +349,7 @@ def mv(filename, pwd, folder,user):
     else:
         print("文件不存在")
 
-    return 
+    return
 
 
 def usage():
@@ -383,3 +383,25 @@ def usage():
 清空屏幕: clear
 退出: exit
     """)
+
+
+def neofetch():
+    '''
+    打印系统信息
+    '''
+    print('''
+\033[30m  ________ ___  ___  ________  ___  __            ________  ________      
+\033[31m |\\  _____\\\\  \\|\\  \\|\\   ____\\|\\  \\|\\  \\         |\\   __  \\|\\   ____\\     
+\033[32m \\ \\  \__/\\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\/  /|_       \\ \\  \\|\\  \\ \\  \\___|_    
+\033[33m  \\ \\   __\\\\ \\  \\\\\\  \\ \\  \\    \\ \\   ___  \\       \\ \\  \\\\\\  \\ \\_____  \\   
+\033[34m   \\ \\  \\_| \\ \\  \\\\\\  \\ \\  \\____\\ \\  \\\\ \\  \\       \\ \\  \\\\\\  \\|____|\\  \\  
+\033[35m    \\ \\__\\   \\ \\_______\\ \\_______\\ \\__\\\\ \\__\\       \\ \\_______\\____\\_\\  \\ 
+\033[36m     \\|__|    \\|_______|\\|_______|\\|__| \\|__|        \\|_______|\\_________\\
+                                                             \\|_________|
+\033[32m    author_:kainhuck                                                              
+\033[0m                                                              
+    ''')
+
+
+if __name__ == "__main__":
+    neofetch()
