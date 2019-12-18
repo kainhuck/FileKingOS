@@ -7,9 +7,17 @@ from func import parseCmd, cd, checkPass, usage, useradd, chroot, cp, mv, neofet
 from config import userGroup
 import os
 import time
+import platform
+
+plat = platform.architecture()[1]
 
 # 常量定义
-clearSin = 'cls'    # 清屏命令
+if plat == "ELF":
+    clearSin = 'clear'    # 清屏命令
+elif plat == "WindowsPE":
+    clearSin = "cls"
+else:
+    raise Exception("Uknown Plat")
 user = None  # 当前用户
 here = None  # 当前所在文件夹
 
